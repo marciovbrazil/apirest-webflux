@@ -53,10 +53,9 @@ public class PlaylistController {
 	}
 
 	@GetMapping(value="/playlist/mvc")
-	public List<String> getPlaylistByMvc() throws InterruptedException {
+	public List<String> getPlaylistByMvc(@RequestParam(defaultValue = "15") int tempo) throws InterruptedException {
 
-		System.out.println("---Start get Playlists by MVC--- " + LocalDateTime.now());
-
+		System.out.println(String.format("---Start get Playlists by MVC--- Tempo: %d Data e Hora: %s", tempo, LocalDateTime.now().toString()));
 
 		List<String> playlistList = new ArrayList<>();
 		playlistList.add("Java 8");
@@ -64,8 +63,9 @@ public class PlaylistController {
 		playlistList.add("Github");
 		playlistList.add("Deploy de uma aplicação java no IBM Cloud");
 		playlistList.add("Bean no Spring Framework");
-		TimeUnit.SECONDS.sleep(15);
+		TimeUnit.SECONDS.sleep(tempo);
 
+		System.out.println(String.format("---Ended--- Tempo: %d Data e Hora: %s", tempo, LocalDateTime.now().toString()));
 		return playlistList;
 
 	}
